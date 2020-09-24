@@ -41,7 +41,7 @@ class App extends Component {
   render(){
     return (
     <div>
-        <h3 className="display-3" id="title">Music Library</h3>
+        <div id="title"><h3 className="display-3">Music Library</h3></div>
         <table id="music">
           <tbody>
             <tr>

@@ -8,6 +8,8 @@ body{
   text-align: center;
   font-family: arial, sans-serif;
   background-color: #A1BDB9;
+  position: fixed;
+  width: 100%;
 }
 
 #music {
@@ -30,8 +32,7 @@ body{
 #music tr:hover {background-color: rgb(245, 245, 245)}
 
 #music th {
-  margin-top: -15px;
-  padding-top: 12px;
+  padding-top: 100px;
   padding-bottom: 12px;
   text-align: center;
   background-color: #A1BDB9;
