@@ -1,11 +1,10 @@
-import React, { Component, setState } from 'react';
+import React, { Component } from 'react';
 import axios from 'axios';
 import './App.css';
 
 const api = axios.create({
   baseURL: `http://www.devcodecampmusiclibrary.com/api/music`
 })
-const tableData = "";
 
 class App extends Component {
 
@@ -23,11 +22,10 @@ class App extends Component {
   getMusic = async () => {
     let data = await api.get('/').then(({data}) => data);
     this.setState({ musicCollection: data});
-    console.log(data);
   }
 
   renderTableData(){
-    return this.state.musicCollection.map((music, i) => {
+    return this.state.musicCollection.map(music => {
       const { id, title, album, artist, genre } = music
       return (
         <tr key={id}>
