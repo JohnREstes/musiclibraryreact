@@ -5,6 +5,7 @@ import './App.css';
 const api = axios.create({
   baseURL: `http://www.devcodecampmusiclibrary.com/api/music`
 })
+const tableData = "";
 
 class App extends Component {
 
@@ -21,19 +22,39 @@ class App extends Component {
 
   getMusic = async () => {
     let data = await api.get('/').then(({data}) => data);
-    this.setState({ musicCollection: data})
+    this.setState({ musicCollection: data});
+    console.log(data);
   }
 
+  renderTableData(){
+    return this.state.musicCollection.map((music, i) => {
+      const { id, title, album, artist, genre } = music
+      return (
+        <tr key={id}>
+          <td>{title}</td>
+          <td>{album}</td>
+          <td>{artist}</td>
+          <td>{genre}</td>
+        </tr>
+      )
+    })
+  }
   
   render(){
     return (
-    <div className="App">
-      <header className="App-header">
-        <h3 className="display-4">Music Library Search</h3>
-        {this.state.musicCollection.map(music => <h2 key={music.id}>{music.title}</h2>)}
-      </header>
+    <div>
+        <h3 className="display-3" id="title">Music Library</h3>
+        <table id="music">
+          <tbody>
+            <tr>
+              <th>Title</th><th>Album</th><th>Artist</th><th>Genre</th>
+            </tr>
+            {this.renderTableData()}
+          </tbody>
+        </table>
     </div>
-    )};
+    )
+  }  
 }
 
 export default App;
