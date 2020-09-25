@@ -30,13 +30,19 @@ class App extends Component {
     console.log('Searched term: ' + event);
   }
 
+  handleSubmit = () => {
+    alert(`clicked submit`);
+  }
+
   render(){
-    console.log(this.state.musicCollection);
     return (this.state.loading ? <div>Loading...</div> : (
     <div>
-        <div id="title"><h1>Music Library</h1><Form 
+        <div id="title"><h1>Music Library</h1>
+        <Form 
         handleFormChange={this.handleChange}
-        /></div>
+        />
+        <button type="submit" onClick={this.handleSubmit}> Search</button>
+        </div>
         <table id="music">
           <thead>
             <tr>
