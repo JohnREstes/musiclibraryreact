@@ -11,6 +11,7 @@ class App extends Component {
 
     this.state = {
       musicCollection:[],
+      filteredMusic: [],
       loading: true,
       value: ''
     }
@@ -21,18 +22,28 @@ class App extends Component {
     axios.get(`http://www.devcodecampmusiclibrary.com/api/music`)
     .then(res => this.setState({ 
       musicCollection: res.data,
+      filteredMusic: res.data,
       loading: false
     }));
   }
+  
+  myFilter(search){
+    return this.state.musicCollection.filter(function(el) {
+        return el["title"].toLowerCase().includes(search.toLowerCase()) ||
+        el["album"].toLowerCase().includes(search.toLowerCase()) ||
+        el["artist"].toLowerCase().includes(search.toLowerCase()) ||
+        el["genre"].toLowerCase().includes(search.toLowerCase());
+    }
+  )}
 
   handleChange(event){
     this.setState({value: event})
     console.log('Searched term: ' + event);
-  }
-
-  handleSubmit = () => {
-    const { musicCollection } = this.state;
-    console.log(`clicked submit` + musicCollection);
+    const newList = this.myFilter(event);
+    this.setState({
+      filteredMusic: newList,
+    })
+    console.log(this.state.filteredMusic);
   }
 
   render(){
@@ -50,7 +61,7 @@ class App extends Component {
               <th>Title</th><th>Album</th><th>Artist</th><th>Genre</th>
             </tr>
             </thead>
-            <BuildTable data={this.state.musicCollection}/>
+            <BuildTable data={this.state.filteredMusic}/>
         </table>
 
     </div>
