@@ -9,6 +9,13 @@ class Form extends Component {
         }
     }
 
+    handleFormChange = (event) => {
+        this.setState({
+            searchField: event.target.value
+        })
+        this.props.handleFormChange(event.target.value)
+    }
+
     handleSearchField = (event) => {
         this.setState({
             searchField: event.target.value
@@ -23,13 +30,13 @@ class Form extends Component {
     render(){
         return (
             <div>
-            <form onSubmit={this.handleSubmit}>
+            <form>
                 <input type='text' 
                 placeholder='Search'
                 value={this.state.searchField} 
-                onChange={this.handleSearchField}
-                /> &nbsp;
-                <button type="submit"> Search</button>
+                onChange={this.handleFormChange}
+                /> 
+                {/* <button type="submit"> Search</button> */}
             </form>  
             </div>
         )

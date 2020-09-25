@@ -7,11 +7,14 @@ import Form from './components/Forms.js'
 class App extends Component {
 
   constructor(props) {
-    super(props);
+    super(props)
+
     this.state = {
       musicCollection:[],
-      loading: true
+      loading: true,
+      value: ''
     }
+    this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount() {
@@ -22,11 +25,18 @@ class App extends Component {
     }));
   }
 
+  handleChange(event){
+    this.setState({value: event})
+    console.log('Searched term: ' + event);
+  }
+
   render(){
     console.log(this.state.musicCollection);
     return (this.state.loading ? <div>Loading...</div> : (
     <div>
-        <div id="title"><h1>Music Library</h1><Form /></div>
+        <div id="title"><h1>Music Library</h1><Form 
+        handleFormChange={this.handleChange}
+        /></div>
         <table id="music">
           <thead>
             <tr>
