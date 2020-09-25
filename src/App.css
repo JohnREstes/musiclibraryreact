@@ -10,6 +10,7 @@ body{
   background-color: #A1BDB9;
   position: fixed;
   width: 100%;
+  padding-bottom: 5px;
 }
 
 #music {

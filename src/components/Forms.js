@@ -22,21 +22,15 @@ class Form extends Component {
         })
     }
 
-    handleSubmit = (event) => {
-        alert(`${this.state.searchField}`);
-        event.preventDefault()
-    }
-
     render(){
         return (
             <div>
             <form>
                 <input type='text' 
-                placeholder='Search'
+                placeholder='Type to search...'
                 value={this.state.searchField} 
                 onChange={this.handleFormChange}
                 /> 
-                {/* <button type="submit"> Search</button> */}
             </form>  
             </div>
         )

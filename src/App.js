@@ -31,7 +31,8 @@ class App extends Component {
   }
 
   handleSubmit = () => {
-    alert(`clicked submit`);
+    const { musicCollection } = this.state;
+    console.log(`clicked submit` + musicCollection);
   }
 
   render(){
@@ -41,7 +42,7 @@ class App extends Component {
         <Form 
         handleFormChange={this.handleChange}
         />
-        <button type="submit" onClick={this.handleSubmit}> Search</button>
+        {/* <button type="submit" onClick={this.handleSubmit}> Search</button> */}
         </div>
         <table id="music">
           <thead>
