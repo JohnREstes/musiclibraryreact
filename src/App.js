@@ -13,7 +13,7 @@ class App extends Component {
       musicCollection:[],
       filteredMusic: [],
       loading: true,
-      value: ''
+      searchValue: ''
     }
     this.handleChange = this.handleChange.bind(this);
   }
@@ -37,13 +37,11 @@ class App extends Component {
   )}
 
   handleChange(event){
-    this.setState({value: event})
-    console.log('Searched term: ' + event);
+    this.setState({searchValue: event})
     const newList = this.myFilter(event);
     this.setState({
       filteredMusic: newList,
     })
-    console.log(this.state.filteredMusic);
   }
 
   render(){
@@ -53,7 +51,6 @@ class App extends Component {
         <Form 
         handleFormChange={this.handleChange}
         />
-        {/* <button type="submit" onClick={this.handleSubmit}> Search</button> */}
         </div>
         <table id="music">
           <thead>
