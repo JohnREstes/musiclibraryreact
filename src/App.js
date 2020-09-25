@@ -1,56 +1,43 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import './App.css';
-
-const api = axios.create({
-  baseURL: `http://www.devcodecampmusiclibrary.com/api/music`
-})
+import BuildTable from './components/buildTable.js';
+import Form from './components/Forms.js'
 
 class App extends Component {
 
-  state = {
-    musicCollection:[]
+  constructor(props) {
+    super(props);
+    this.state = {
+      musicCollection:[],
+      loading: true
+    }
   }
 
-  constructor() {
-    super();
-    this.getMusic();
-  } catch (err){
-    console.log(err);
+  componentDidMount() {
+    axios.get(`http://www.devcodecampmusiclibrary.com/api/music`)
+    .then(res => this.setState({ 
+      musicCollection: res.data,
+      loading: false
+    }));
   }
 
-  getMusic = async () => {
-    let data = await api.get('/').then(({data}) => data);
-    this.setState({ musicCollection: data});
-  }
-
-  renderTableData(){
-    return this.state.musicCollection.map(music => {
-      const { id, title, album, artist, genre } = music
-      return (
-        <tr key={id}>
-          <td>{title}</td>
-          <td>{album}</td>
-          <td>{artist}</td>
-          <td>{genre}</td>
-        </tr>
-      )
-    })
-  }
-  
   render(){
-    return (
+    console.log(this.state.musicCollection);
+    return (this.state.loading ? <div>Loading...</div> : (
     <div>
-        <div id="title"><h3 className="display-3">Music Library</h3></div>
+        <div id="title"><h1>Music Library</h1><Form /></div>
         <table id="music">
-          <tbody>
+          <thead>
             <tr>
               <th>Title</th><th>Album</th><th>Artist</th><th>Genre</th>
             </tr>
-            {this.renderTableData()}
-          </tbody>
+            </thead>
+            <BuildTable data={this.state.musicCollection}/>
         </table>
+
     </div>
+    )
     )
   }  
 }
