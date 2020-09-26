@@ -4,13 +4,18 @@ body{
   background-repeat: repeat;
   background-size: cover;
 }
-#title {
+h1 {
+  font-size: 2.5rem;
+  font-weight: bolder;
+}
+#titleHeader {
   text-align: center;
   font-family: arial, sans-serif;
   background-color: #A1BDB9;
   position: fixed;
   width: 100%;
-  padding-bottom: 5px;
+  padding-bottom: 10px;
+
 }
 
 #music {
@@ -38,5 +43,5 @@ body{
   text-align: center;
   background-color: #A1BDB9;
   color: black;
-  font-size: 2rem;
+  font-size: 1.5rem;
 }

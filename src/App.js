@@ -3,6 +3,7 @@ import axios from 'axios';
 import './App.css';
 import BuildTable from './components/buildTable.js';
 import Form from './components/Forms.js'
+import SortColumn from './components/SortColumn.js'
 
 class App extends Component {
 
@@ -13,9 +14,11 @@ class App extends Component {
       musicCollection:[],
       filteredMusic: [],
       loading: true,
-      searchValue: ''
+      searchValue: '',
+      clickIndex: ''
     }
-    this.handleChange = this.handleChange.bind(this);
+    this.handleChange = this.handleSearchChange.bind(this);
+    this.handleTitleClick = this.handleTitleClick.bind(this);
   }
 
   componentDidMount() {
@@ -34,9 +37,27 @@ class App extends Component {
         el["artist"].toLowerCase().includes(search.toLowerCase()) ||
         el["genre"].toLowerCase().includes(search.toLowerCase());
     }
-  )}
+  )} 
 
-  handleChange(event){
+  compare(a, b) {
+    const bandA = a.title.toUpperCase();
+    const bandB = b.title.toUpperCase();
+  
+    let comparison = 0;
+    if (bandA > bandB) {
+      comparison = 1;
+    } else if (bandA < bandB) {
+      comparison = -1;
+    }
+    return comparison;
+  }
+
+  mySort(sortTitle){
+    this.state.filteredMusic.sort(this.compare);
+  } 
+  
+
+  handleSearchChange(event){
     this.setState({searchValue: event})
     const newList = this.myFilter(event);
     this.setState({
@@ -44,23 +65,32 @@ class App extends Component {
     })
   }
 
+  handleTitleClick(event){
+    this.setState({clickIndex: event});
+    console.log(event);
+    this.mySort(event)
+    // const newList = this.myFilter(event);
+    // this.setState({
+    //   filteredMusic: newList,
+    // })
+  }
+
   render(){
     return (this.state.loading ? <div>Loading...</div> : (
     <div>
-        <div id="title"><h1>Music Library</h1>
+        <div id="titleHeader"><h1>Music Library</h1>
         <Form 
-        handleFormChange={this.handleChange}
+        handleFormChange={this.handleSearchChange}
         />
         </div>
         <table id="music">
-          <thead>
-            <tr>
-              <th>Title</th><th>Album</th><th>Artist</th><th>Genre</th>
-            </tr>
-            </thead>
+            <thead>
+              <SortColumn 
+              handleTitleClick={this.handleTitleClick}
+              />
+              </thead>
             <BuildTable data={this.state.filteredMusic}/>
         </table>
-
     </div>
     )
     )

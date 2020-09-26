@@ -16,12 +16,6 @@ class Form extends Component {
         this.props.handleFormChange(event.target.value)
     }
 
-    handleSearchField = (event) => {
-        this.setState({
-            searchField: event.target.value
-        })
-    }
-
     render(){
         return (
             <div>

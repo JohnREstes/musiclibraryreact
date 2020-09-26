@@ -1,11 +1,13 @@
 import React from 'react'
 
 function Filter(props){
+    const searchValue = props.data.searchValue;
     return props.data.musicCollection.filter(function(el) {
-        return el["title"].toLowerCase().includes(props.data.searchValue.toLowerCase()) ||
-        el["album"].toLowerCase().includes(props.data.searchValue.toLowerCase()) ||
-        el["artist"].toLowerCase().includes(props.data.searchValue.toLowerCase()) ||
-        el["genre"].toLowerCase().includes(props.data.searchValue.toLowerCase());
+        const { title, album, artist, genre } = el
+        return el[{title}].toLowerCase().includes(searchValue.toLowerCase()) ||
+        el[{album}].toLowerCase().includes(searchValue.toLowerCase()) ||
+        el[{artist}].toLowerCase().includes(searchValue.toLowerCase()) ||
+        el[{genre}].toLowerCase().includes(searchValue.toLowerCase());
     }
 )}
 
