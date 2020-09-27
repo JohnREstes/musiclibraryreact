@@ -9,16 +9,15 @@ class App extends Component {
 
   constructor(props) {
     super(props)
-
+    const titleClicked = '';
     this.state = {
       musicCollection:[],
       filteredMusic: [],
-      loading: true,
-      searchValue: '',
-      clickIndex: ''
+      loading: true
     }
     this.handleSearchChange = this.handleSearchChange.bind(this);
     this.handleTitleClick = this.handleTitleClick.bind(this);
+    this.compare = this.compare.bind(this);
   }
 
   componentDidMount() {
@@ -40,9 +39,8 @@ class App extends Component {
   )} 
 
   compare(a, b) {
-    const itemA = a.title.toUpperCase();
-    const itemB = b.title.toUpperCase();
-  
+    const itemA = a[this.titleClicked].toUpperCase();
+    const itemB = b[this.titleClicked].toUpperCase();
     let comparison = 0;
     if (itemA > itemB) {
       comparison = 1;
@@ -51,24 +49,20 @@ class App extends Component {
     }
     return comparison;
   }
-
-  mySort(sortTitle){
-    this.state.filteredMusic.sort(this.compare);
-  } 
   
-
   handleSearchChange(event){
-    this.setState({searchValue: event})
     const newList = this.myFilter(event);
     this.setState({
       filteredMusic: newList,
-    })
+    });
   }
 
   handleTitleClick(event){
-    this.setState({clickIndex: event});
-    console.log(event);
-    this.mySort(event)
+    this.titleClicked = event;
+    const newList = this.state.filteredMusic.sort(this.compare);
+    this.setState({
+      filteredMusic: newList,
+    });
   }
 
   render(){
