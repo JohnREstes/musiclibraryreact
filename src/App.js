@@ -71,7 +71,7 @@ class App extends Component {
         <div id="titleHeader"><h1>Music Library</h1>
         <Form 
         handleSearchChange={this.handleSearchChange}
-        />
+        /><span id="sortAlpha">click title to sort alphabetically</span>
         </div>
         <table id="music">
             <thead>

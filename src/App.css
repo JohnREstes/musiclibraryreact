@@ -17,7 +17,9 @@ h1 {
   padding-bottom: 10px;
 
 }
-
+#sortAlpha{
+  display: inline;
+}
 #music {
   text-align: center;
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
@@ -38,7 +40,7 @@ h1 {
 #music tr:hover {background-color: rgb(245, 245, 245)}
 
 #music th {
-  padding-top: 100px;
+  padding-top: 110px;
   padding-bottom: 12px;
   text-align: center;
   background-color: #A1BDB9;
