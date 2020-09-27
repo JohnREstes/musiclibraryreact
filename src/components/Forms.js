@@ -13,7 +13,7 @@ class Form extends Component {
         this.setState({
             searchField: event.target.value
         })
-        this.props.handleFormChange(event.target.value)
+        this.props.handleSearchChange(event.target.value)
     }
 
     render(){

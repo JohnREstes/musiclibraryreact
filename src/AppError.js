@@ -17,7 +17,7 @@ class App extends Component {
       searchValue: '',
       clickIndex: ''
     }
-    this.handleSearchChange = this.handleSearchChange.bind(this);
+    this.handleChange = this.handleSearchChange.bind(this);
     this.handleTitleClick = this.handleTitleClick.bind(this);
   }
 
@@ -39,26 +39,25 @@ class App extends Component {
     }
   )} 
 
-  compare(a, b) {
-    const itemA = a.title.toUpperCase();
-    const itemB = b.title.toUpperCase();
+  // compare(a, b) {
+  //   const bandA = a.title.toUpperCase();
+  //   const bandB = b.title.toUpperCase();
   
-    let comparison = 0;
-    if (itemA > itemB) {
-      comparison = 1;
-    } else if (itemA < itemB) {
-      comparison = -1;
-    }
-    return comparison;
-  }
+  //   let comparison = 0;
+  //   if (bandA > bandB) {
+  //     comparison = 1;
+  //   } else if (bandA < bandB) {
+  //     comparison = -1;
+  //   }
+  //   return comparison;
+  // }
 
-  mySort(sortTitle){
-    this.state.filteredMusic.sort(this.compare);
-  } 
+  // mySort(sortTitle){
+  //   this.state.filteredMusic.sort(this.compare);
+  // } 
   
 
   handleSearchChange(event){
-    this.setState({searchValue: event})
     const newList = this.myFilter(event);
     this.setState({
       filteredMusic: newList,
@@ -66,9 +65,8 @@ class App extends Component {
   }
 
   handleTitleClick(event){
-    this.setState({clickIndex: event});
     console.log(event);
-    this.mySort(event)
+    //this.mySort(event)
   }
 
   render(){
@@ -76,7 +74,7 @@ class App extends Component {
     <div>
         <div id="titleHeader"><h1>Music Library</h1>
         <Form 
-        handleSearchChange={this.handleSearchChange}
+        handleFormChange={this.handleSearchChange}
         />
         </div>
         <table id="music">
