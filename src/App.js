@@ -66,10 +66,7 @@ class App extends Component {
   }
 
   render(){
-    return 
-    // (this.state.loading ? <div>Loading...</div> : 
-      (
-    <div>
+    return (<div>
         <div id="titleHeader"><h1>Music Library</h1>
         <Form 
         handleSearchChange={this.handleSearchChange}
@@ -85,7 +82,6 @@ class App extends Component {
         </table>
     </div>
     )
-    // )
   }  
 }
 
