@@ -4,6 +4,7 @@ import './App.css';
 import BuildTable from './components/buildTable.js';
 import Form from './components/Forms.js'
 import SortColumn from './components/SortColumn.js'
+import music from './components/music.json'
 
 class App extends Component {
 
@@ -21,12 +22,17 @@ class App extends Component {
   }
 
   componentDidMount() {
-    axios.get(`http://www.devcodecampmusiclibrary.com/api/music`)
-    .then(res => this.setState({ 
-      musicCollection: res.data,
-      filteredMusic: res.data,
+    // axios.get(`http://www.devcodecampmusiclibrary.com/api/music`)
+    // .then(res => this.setState({ 
+    //   musicCollection: res.data,
+    //   filteredMusic: res.data,
+    //   loading: false
+    // }));
+    this.setState({ 
+      musicCollection: music,
+      filteredMusic: music,
       loading: false
-    }));
+    });
   }
   
   myFilter(search){
